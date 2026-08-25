@@ -98,7 +98,7 @@ Follow these steps to install and run the Language Translator application.
 
 ```bash
 
-git clone YOUR\_GITHUB\_REPOSITORY\_LINK
+git clone  https://github.com/ARIPELLIAKHILA/CodeAlpha_TranslationApp.git
 
 
 
