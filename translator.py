@@ -1,22 +1,34 @@
-from translate import Translator
+import requests
 
 
 def translate_text(text, source_language, target_language):
     try:
+        if not text.strip():
+            return ""
+
         if source_language == target_language:
             return text
 
-        translator = Translator(
-            from_lang=source_language,
-            to_lang=target_language
-        )
+        url = "https://api.mymemory.translated.net/get"
 
-        result = translator.translate(text)
+        params = {
+            "q": text,
+            "langpair": f"{source_language}|{target_language}"
+        }
 
-        if not result:
-            return "No translation was returned."
+        response = requests.get(url, params=params, timeout=10)
 
-        return result
+        if response.status_code != 200:
+            return f"Translation error: HTTP {response.status_code}"
+
+        data = response.json()
+
+        translated_text = data.get("responseData", {}).get("translatedText")
+
+        if not translated_text:
+            return "Translation error: No translation was returned."
+
+        return translated_text
 
     except Exception as e:
         return f"Translation error: {e}"
