@@ -157,6 +157,11 @@ Open your web browser and enter:
 
 
 http://127.0.0.1:5000
+## 🌐 Translation Service
+
+The application uses the MyMemory Translation API to perform text translation through an online translation service.
+
+The API is accessed from Python using the `requests` library.
 
 
 
